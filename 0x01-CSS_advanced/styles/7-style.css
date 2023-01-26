@@ -31,11 +31,14 @@ a {
   --font-size-large: 1.8rem;
   --font-size-x-large: 2.3rem;
   --font-size-xx-large: 4.8rem;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
 }
 
 body {
   font-family: var(--font-family-base);
   font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-regular);
 }
 
 h1,
@@ -45,4 +48,5 @@ h4,
 h5,
 h6 {
   font-family: var(--font-family-title);
+  font-weight: var(--font-weight-bold);
 }
