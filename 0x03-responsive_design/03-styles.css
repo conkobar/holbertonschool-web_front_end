@@ -371,7 +371,7 @@ ul.row {
   width: calc((100% / 2) - 2rem);
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
   :root {
     --section-padding: 5rem 1.5rem;
     --section-body-padding: 2rem 0 0;
@@ -437,7 +437,7 @@ ul.row {
   width: 100%;
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .navbar-menu {
     display: none;
   }
@@ -577,7 +577,7 @@ ul.row {
 /* Section Latest news
       ============================= */
 
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .section-latest-news .row {
     flex-direction: column;
   }
