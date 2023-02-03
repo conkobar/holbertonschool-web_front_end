@@ -1,0 +1,13 @@
+/* margin mixins */
+@mixin snickers($reeses) {
+  margin-left: $reeses;
+  margin-right: $reeses;
+}
+
+body {
+  @include snickers(10px);
+}
+
+div {
+  @include snickers(15px);
+}
