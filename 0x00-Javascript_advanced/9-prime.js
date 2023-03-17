@@ -1,12 +1,11 @@
-let prime = true;
 let count = 0;
+let prime = true;
 
 function countPrimeNumbers() {
-  let num;
-
   for (let i = 2; i < 101; i++) {
-    for (i = 2; i < num; i++) {
-      if (num % i == 0) {
+    for (let j = 2; j < i; j++) {
+      prime = true;
+      if (i % j == 0) {
         prime = false;
         break;
       } else {
@@ -25,6 +24,6 @@ let end = performance.now();
 
 console.log(
   `Execution time of printing countPrimeNumbers was ${
-    start - end
+    end - start
   } milliseconds.`
 );
