@@ -29,8 +29,8 @@
         $('tbody').append(`<tr><td>${firstName}<td>${lastName}<td>(x)`);
         const x = $('td:nth-child(3)');
         x.css('background-color', 'orange');
-        x.on('click', function() {
-            $(this).parents('tr').remove();
+        x.on('click', function() { // cannot use arrow function here, as it has no 'this'
+            $(this).parent('tr').remove();
           });
       };
     </script>
