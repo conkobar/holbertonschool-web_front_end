@@ -27,9 +27,13 @@
       // adds new member to family table
       const addNewMember = (firstName, lastName) => {
         $('tbody').append(`<tr><td>${firstName}<td>${lastName}<td>(x)`);
+        // make third cell (x)
         const x = $('td:nth-child(3)');
+        // turn it orange
         x.css('background-color', 'orange');
-        x.on('click', function() { // cannot use arrow function here, as it has no 'this'
+        // (x) deletes current row when clicked
+        x.on('click', function() {
+          // cannot use arrow function here, as it has no 'this' value
             $(this).parent('tr').remove();
           });
       };

@@ -32,7 +32,8 @@
         // turn it orange
         x.css('background-color', 'orange');
         // (x) deletes current row when clicked
-        x.on('click', function() { // cannot use arrow function here, as it has no 'this'
+        x.on('click', function() {
+          // cannot use arrow function here, as it has no 'this' value
             $(this).parent('tr').remove();
           });
       };
