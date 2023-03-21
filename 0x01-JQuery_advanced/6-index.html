@@ -12,11 +12,7 @@
       // executes on DOM readiness
       $(document).ready(() => {
         createFamilyTree();
-        addNewMember('Guillaume', 'Salva');
-        addNewMember('Arielle', 'Snizt');
-        addNewMember('Fanette', 'Snizt');
-        addNewMember('Gerard', 'Snizt');
-        addNewMember('Victor', 'Snizt');
+        createForm();
       });
 
       // creates a family table element
@@ -25,17 +21,46 @@
       };
 
       // adds new member to family table
-      const addNewMember = (firstName, lastName) => {
-        $('tbody').append(`<tr><td>${firstName}<td>${lastName}<td>(x)`);
+      const addNewMember = (firstName, lastName, position) => {
+        // check to see where to put the new member
+        if (position === 'before') {
+          $('tbody').prepend(`<tr><td>${firstName}<td>${lastName}<td>(x)`);
+        } else {
+          $('tbody').append(`<tr><td>${firstName}<td>${lastName}<td>(x)`);
+        }
         // make third cell (x)
         const x = $('td:nth-child(3)');
         // turn it orange
         x.css('background-color', 'orange');
         // (x) deletes current row when clicked
-        x.on('click', function() {
+        x.on('click', function () {
           // cannot use arrow function here, as it has no 'this' value
-            $(this).parent('tr').remove();
-          });
+          $(this).parent('tr').remove();
+        });
+      };
+
+      // create a form for new members
+      const createForm = () => {
+        // make the form above the table
+        $('table').before(
+          `<form>
+							<input type="text">
+							<input type="text">
+							<select>
+								<option value="before">Before</option>
+								<option value="after">After</option>
+							</select>
+							<input type="button" id="submit" value="Submit">
+						</form>`
+        );
+        // add user's info to the table when clicked
+        $('#submit').click(() => {
+          addNewMember(
+            $('input:first').val(),
+            $('input:nth-of-type(2)').val(),
+            $('select').find(':selected').text().toLowerCase()
+          );
+        });
       };
     </script>
   </head>
