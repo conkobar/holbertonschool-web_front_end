@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 0</title>
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
+      integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw="
+      crossorigin="anonymous"
+    ></script> -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <script type="application/javascript">
+      // executes on DOM readiness
+      $(document).ready(() => {
+        createSearchForm();
+      });
+
+      // creates a form to search thru wikipedia
+      const createSearchForm = () => {
+        $('body').append([
+          $('<input/>', { type: 'text', id: 'search' }),
+          $('<input/>', {
+            type: 'submit',
+            value: 'Submit',
+            on: {
+              click: () => {
+                // search for given string thru wikipedia
+                queryWikipedia($('#search').val());
+              },
+            },
+          }),
+          // create a list to hold the results of the query
+          $('<ul/>', { class: 'results' }),
+        ]);
+      };
+
+      // appends a list of results to the list
+      const addNewArticle = (id, title, snippet) => {
+        $('ul').append(
+          $('<li/>').append([
+            $('<p/>').append([
+              $('<span/>', { text: `${id} - ` }),
+              $('<b/>', { text: `${title}` }),
+            ]),
+            $('<p/>', { html: `${snippet}` }),
+          ])
+        );
+      };
+
+      // searches wikipedia, creating a new article in the process
+      const queryWikipedia = (search) => {
+        $.ajax({
+          url: 'https://en.wikipedia.org/w/api.php' + '?origin=*',
+          data: {
+            action: 'query',
+            format: 'json',
+            list: 'search',
+            srsearch: search,
+          },
+          method: 'GET',
+          success: (json) => {
+            // executes on successful search
+            $('.results').replaceWith($('<ul/>', { class: 'results' }));
+            $.each(json.query.search, function (index, result) {
+              // send value of query to result-listing function
+              addNewArticle(result.pageid, result.title, result.snippet);
+            });
+          },
+          error: (xhr, status, errorThrown) => {
+            // executes if search fails
+            alert('Something went wrong!');
+            console.log(`Error: ${error}`);
+            console.log(`Status: ${status}`);
+            console.dir(xhr);
+          },
+        });
+      };
+    </script>
+  </head>
+
+  <body></body>
+</html>
