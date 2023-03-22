@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookies</title>
+  </head>
+  <body>
+    <h1>Login to the website</h1>
+    <form>
+      <input type="text" id="firstname" placeholder="Firstname" />
+      <input type="text" id="email" placeholder="Email" />
+      <button onclick="setCookies()">Log me in</button>
+    </form>
+
+    <h1>Cookies</h1>
+    <button onclick="showCookies()">Show me Cookies!</button>
+    <hr />
+
+    <script type="text/javascript">
+      const setCookies = () => {
+        const firstname = document.getElementById('firstname').value;
+        const email = document.getElementById('email').value;
+        document.cookie = `firstname=${firstname}`;
+        document.cookie = `email=${email}`;
+      };
+
+      const showCookies = () => {
+        const p = document.createElement('p');
+        p.innerText = `Cookies: ${document.cookie}`;
+        document.body.append(p);
+      };
+
+      // clears cookies
+      const deleteAllCookies = () => {
+        const cookies = document.cookie.split(';');
+
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i];
+          const eqPos = cookie.indexOf('=');
+          const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+          document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        }
+      };
+    </script>
+  </body>
+</html>
