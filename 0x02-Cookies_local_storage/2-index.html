@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookies</title>
+  </head>
+  <body>
+    <h1>Login to the website</h1>
+    <form>
+      <input type="text" id="firstname" placeholder="Firstname" />
+      <input type="text" id="email" placeholder="Email" />
+      <button onclick="setCookies()">Log me in</button>
+    </form>
+
+    <h1>Cookies</h1>
+    <button onclick="showCookies()">Show me Cookies!</button>
+
+    <script type="text/javascript">
+      // set site cookies in a field
+      const setCookies = () => {
+        // setup datetime object for expiration date
+        let date = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000); // Set to expire cookies in 10 days
+        date = date.toUTCString(); // "Thu, 01 Jan 1970 00:00:00 GMT"
+        // create cookie key:value pairs
+        const firstname = document.getElementById('firstname').value;
+        const email = document.getElementById('email').value;
+        // save the cookie
+        document.cookie = `firstname=${firstname}; path=/; expires=${date}`;
+        document.cookie = `email=${email}; path=/; expires=${date}`;
+      };
+
+      // show the stored cookies in the browser
+      const showCookies = () => {
+        const p = document.createElement('p');
+        p.innerText = `Email: ${getCookie('email')} - Firstname: ${getCookie(
+          'firstname'
+        )}`;
+        document.body.append(p);
+      };
+
+      // clears cookies
+      const deleteAllCookies = () => {
+        const cookies = document.cookie.split(';');
+        // begin replacement loop
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i];
+          const eqPos = cookie.indexOf('=');
+          const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+          document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        }
+      };
+
+      // gets a specific cookie
+      const getCookie = (name) => {
+        const nameEQ = `${name}=`;
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0)
+            return c.substring(nameEQ.length, c.length);
+        }
+        return '';
+      };
+    </script>
+  </body>
+</html>
