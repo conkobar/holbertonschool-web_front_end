@@ -1,0 +1,64 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "fd",
+      "author": "fffff",
+      "id": 2
+    },
+    {
+      "title": "fd",
+      "author": "fffff",
+      "id": 3
+    },
+    {
+      "title": "f",
+      "author": "f",
+      "id": 4
+    },
+    {
+      "title": "ravioli",
+      "author": "f",
+      "id": 5
+    },
+    {
+      "title": "hamburger",
+      "author": "f",
+      "id": 6
+    },
+    {
+      "title": "pizza",
+      "author": "f",
+      "id": 7
+    },
+    {
+      "title": "chili dog",
+      "author": "f",
+      "id": 8
+    },
+    {
+      "title": "taco",
+      "author": "f",
+      "id": 9
+    },
+    {
+      "title": "pb&j",
+      "author": "f",
+      "id": 10
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
