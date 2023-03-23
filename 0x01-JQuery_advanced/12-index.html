@@ -20,7 +20,7 @@
         buildForm();
       });
 
-      // make post query
+      // make post query to db
       const addPostRow = (data) => {
         $('body').append(`
           <p id="row-${data.id}">
@@ -75,26 +75,24 @@
       // send form when submit button is clicked
       const sendForm = () => {
         $('form').after(`<p>About to send the query to the API</p>`);
+        const data = {
+          title: $('#title').val(),
+          author: $('#author').val(),
+        };
+        // query the db
         $.ajax({
           method: 'POST',
           url: 'http://localhost:3000/posts',
-          data: {
-            title: `${$('#submit').val()}`,
-            author: `${$('#author').val()}`,
-          },
+          data: data,
           success: (data) => {
             addPostRow(data);
           },
-          fail: () => {
+          fail: (e) => {
             alert('Error sending the POST query');
+            console.log(e.message);
           },
         });
       };
-
-      // prevents page from reloading on form submit
-      $('form').submit((e) => {
-        e.preventDefault();
-      });
 
       // all text selected when form field is clicked
       $(`input[type='text']`).on('click', function () {
