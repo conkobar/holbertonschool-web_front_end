@@ -81,11 +81,14 @@
           showForm();
         } else {
           hideForm();
-
+          // make a welcome message
           const h1 = document.createElement('h1');
-          h1.innerHTML = `Welcome ${getCookies('firstname')}
-          <a style="font-weight: normal; font-style: italic; margin-left: 10px;" onclick="deleteCookiesAndShowForm(); showForm();">(logout)</a>`;
-
+          h1.innerHTML = `
+            Welcome ${getCookies(
+              'firstname'
+            )}<a style="font-weight: normal; font-style: italic; margin-left: 10px;" onclick="deleteCookiesAndShowForm(); showForm();">(logout)</a>
+          `;
+          // get and show the welcome message
           const welcome = document.getElementById('welcome');
           welcome.append(h1);
         }
