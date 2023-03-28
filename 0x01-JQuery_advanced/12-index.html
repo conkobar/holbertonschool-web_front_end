@@ -79,18 +79,22 @@
           title: $('#title').val(),
           author: $('#author').val(),
         };
+        console.log(data);
         // query the db
         $.ajax({
           method: 'POST',
           url: 'http://localhost:3000/posts',
           data: data,
-          success: (data) => {
-            addPostRow(data);
+          success: (response) => {
+            console.log(`Success: ${response}`);
+            addPostRow(response);
           },
           fail: (e) => {
-            alert('Error sending the POST query');
+            alert(`Error sending the POST query: ${e}`);
             console.log(e.message);
           },
+        }).done(() => {
+          console.log('post success');
         });
       };
 
@@ -98,6 +102,11 @@
       $(`input[type='text']`).on('click', function () {
         // !! cannot use arrow func, as it has no this value
         $(this).select();
+      });
+
+      // meant to prevent refreshing on form submit
+      $('#submit').on('click', function (e) {
+        e.preventDefault();
       });
     </script>
   </head>
