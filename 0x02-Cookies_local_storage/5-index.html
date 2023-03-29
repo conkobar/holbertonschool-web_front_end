@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src=" https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js "></script>
+
+    <title>Cookies</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // potential list of items in cart
+      const availableItems = ['Shampoo', 'Soap', 'Sponge', 'Water'];
+
+      // check if local storage is enabled
+      const isLocalStorageEnabled = () => {
+        try {
+          // try to save and immediately delete something locally
+          const key = `__storage__test`;
+          window.localStorage.setItem(key, null);
+          window.localStorage.removeItem(key);
+          return true;
+        } catch (e) {
+          alert(
+            'Sorry, your browser does not support Web storage. Try again with a better one.'
+          );
+          return false;
+        }
+      };
+
+      // adds an item to cart and local storage
+      const addItemToCart = (item) => {
+        window.localStorage.setItem(item, true);
+      };
+
+      // creates the shop in the DOM
+      const createStore = () => {
+        // make a new list in the HTML
+        const ul = document.createElement('ul');
+        document.body.append(ul);
+      };
+
+      // shows the user their cart
+      const displayCart = () => {
+
+      };
+    </script>
+  </body>
+</html>
